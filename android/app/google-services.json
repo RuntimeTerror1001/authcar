@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "140235883023",
+    "project_id": "authcar-3212f",
+    "storage_bucket": "authcar-3212f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140235883023:android:bed115690ba7bfd24a997a",
+        "android_client_info": {
+          "package_name": "com.example.auth_car"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140235883023-vaiv6bp24dvj7dvqu0fndo2sf784avm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsRiG1CfzPDH1rVYb0EKBBhQ-cnbEDcVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140235883023-vaiv6bp24dvj7dvqu0fndo2sf784avm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
