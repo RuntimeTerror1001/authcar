@@ -8,12 +8,11 @@ import 'package:get/get.dart';
 
 class StepperMotorController extends GetxController {
   BluetoothConnection? connection;
-  bool isConnected = false;
 
   void connectToDevice() async {
-    connection =
-        await BluetoothConnection.toAddress('00:22:06:01:A8:C9').then((value) {
-      // print('Successfully Connected to device');
+    // DC:1A:C5:2C:30:70
+    try {
+      connection = await BluetoothConnection.toAddress('00:22:06:01:A8:C9');
       Get.snackbar(
         'HC-05',
         'Successfully Connected!!',
@@ -32,16 +31,14 @@ class StepperMotorController extends GetxController {
         forwardAnimationCurve: Curves.easeOutBack,
         shouldIconPulse: true,
       );
-      // moveStepperMotor(true, 200);
-      return null;
-    });
-    isConnected = true;
-    update();
+      update();
+    } catch (exception) {
+      print(exception);
+    }
   }
 
   void disconnectFromDevice() async {
     await connection?.close();
-    isConnected = false;
     update();
   }
 
@@ -60,20 +57,23 @@ class StepperMotorController extends GetxController {
   //   }
   // }
 
-  void startStepperMotor() async {
-    if (isConnected && connection != null) {
-      // connection!.output
-      //     .add(utf8.encode('TURN_ON_MOTOR' + '\r\n') as Uint8List);
-      FlutterBluetoothSerial.instance.write('1');
+  void startStepperMotor(String command) {
+    print("start motor $command");
+    print("connection start motor ${connection.toString()}");
+    if (connection != null) {
+      connection!.output.add(utf8.encode('1' + '\r\n') as Uint8List);
+      // FlutterBluetoothSerial.instance.write(command);
       // connection!.output.add(utf8.encode('1') as Uint8List);
-      await connection!.output.allSent;
+      connection!.output.allSent;
+      print('after starting ${connection?.output}');
     }
   }
 
-  void stopStepperMotor() async {
-    if (isConnected && connection != null) {
-      connection!.output.add(utf8.encode('0' + '\r\n') as Uint8List);
-      await connection!.output.allSent;
+  void stopStepperMotor(String command) {
+    if (connection != null) {
+      connection!.output.add(utf8.encode('0') as Uint8List);
+      connection!.output.allSent;
+      print('after stopping ${connection?.output}');
     }
   }
 }

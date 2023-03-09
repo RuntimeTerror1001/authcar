@@ -123,15 +123,15 @@ class _ConnectionScreenState extends State<ConnectionScreen> {
                           children: [
                             ElevatedButton(
                               child: const Text('Rotate Clockwise'),
-                              onPressed: () {
-                                _controller.startStepperMotor();
-                              },
+                              onPressed: connected
+                                  ? () => _controller.startStepperMotor('1')
+                                  : null,
                             ),
                             ElevatedButton(
                               child: const Text('STOP'),
-                              onPressed: () {
-                                _controller.stopStepperMotor();
-                              },
+                              onPressed: connected
+                                  ? () => _controller.stopStepperMotor('0')
+                                  : null,
                             ),
                           ],
                         )
